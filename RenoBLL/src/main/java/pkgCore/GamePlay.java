@@ -213,6 +213,14 @@ public class GamePlay {
 	 */
 	public boolean isMadeHandBestPossibleHand(Player player) {
 		//FIXME: If the BestMadeHand is in the BestPossibleHands, return true.  The player has the NUTS!
+		
+		//done
+		
+		if(this.getBestPossibleHands(player).get(0).getHS().equals(getBestPossibleHands(player).get(0).getHS()))
+		{
+			return true;
+		}
+		
 		return false;
 	}
 
@@ -227,8 +235,7 @@ public class GamePlay {
 	 */
 	protected void SetBestMadeHand(UUID PlayerID, HandPoker HandPoker) {
 		//FIXME: Put the best made hand for a plyer in the map.
-		
-	
+		HandPoker = getBestMadeHand(GetGamePlayer(PlayerID));
 		
 		
 	}
@@ -244,6 +251,8 @@ public class GamePlay {
 	 */
 	protected void SetBestPossibleHands(UUID PlayerID, ArrayList<HandPoker> BestHands) {
 		//FIXME: Set the best possible hands in the map
+		
+		BestHands = getBestPossibleHands(GetGamePlayer(PlayerID));
 		
 		
 		
