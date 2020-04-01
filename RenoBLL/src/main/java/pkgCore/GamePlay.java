@@ -113,8 +113,10 @@ public class GamePlay {
 	 */
 	public HandPoker getBestMadeHand(Player player) {
 		//FIXME: this should not return null, it should return back the best made hand in the hashmap
+		
+		return BestMadeHand.get(player.getPlayerID());
+		
 	
-		return null;
 	}
 
 	/**
@@ -236,6 +238,7 @@ public class GamePlay {
 	protected void SetBestMadeHand(UUID PlayerID, HandPoker HandPoker) {
 		//FIXME: Put the best made hand for a plyer in the map.
 		HandPoker = getBestMadeHand(GetGamePlayer(PlayerID));
+		this.BestMadeHand.put(PlayerID, HandPoker);
 		
 		
 	}
@@ -250,11 +253,9 @@ public class GamePlay {
 	 * @param BestHands
 	 */
 	protected void SetBestPossibleHands(UUID PlayerID, ArrayList<HandPoker> BestHands) {
-		//FIXME: Set the best possible hands in the map
-		
-		BestHands = getBestPossibleHands(GetGamePlayer(PlayerID));
 		
 		
+		this.BestPossibleHands.put(PlayerID, BestHands);
 		
 		
 	}
@@ -295,6 +296,8 @@ public class GamePlay {
 		ArrayList<Player> WinningPlayers = new ArrayList<Player>();
 		ArrayList<HandPoker> GameHands = new ArrayList<HandPoker>();
 		//FIXME: finish the implmentation
+		
+		for 
 		
 		
 		
