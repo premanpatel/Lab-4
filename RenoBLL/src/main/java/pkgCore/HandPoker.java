@@ -127,10 +127,11 @@ public class HandPoker extends Hand implements Comparable {
 				.filter(x -> x.getHandScorePoker().isNatural() == true).findAny()
 				.orElse(null);
 		
+		
 		//TODO: the end result of this method was to run these two setters:
 		
-		//this.getGP().SetBestPossibleHands		
-		//this.getGP().SetBestMadeHand
+		//this.getGP().SetBestPossibleHands;		
+		//this.getGP().SetBestMadeHand;
 	}
 
 	public ArrayList<HandPoker> GetPossibleHands() throws HandException {
