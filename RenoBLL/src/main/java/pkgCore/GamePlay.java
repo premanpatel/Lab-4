@@ -185,7 +185,7 @@ public class GamePlay {
 	 * @return
 	 */
 	public HandPoker GetPlayersHand(Player player) {
-		//FIXME: test this later - bill
+		
 		return GameHand.get(player.getPlayerID());
 	}
 
@@ -244,6 +244,8 @@ public class GamePlay {
 	 */
 	protected void SetBestPossibleHands(UUID PlayerID, ArrayList<HandPoker> BestHands) {
 		//FIXME: Set the best possible hands in the map
+		
+		
 		
 		
 	}
