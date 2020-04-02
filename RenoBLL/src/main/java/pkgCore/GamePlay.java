@@ -292,12 +292,33 @@ public class GamePlay {
 	 */
 	public ArrayList<Player> GetGameWinners() {
 		
-		//FIXME: Find all the bestmadehand from each of the players, return an ArrayList of Players that have the best hand.  Two players could tie (so two entries in the ArrayList		
+		
 		ArrayList<Player> WinningPlayers = new ArrayList<Player>();
 		ArrayList<HandPoker> GameHands = new ArrayList<HandPoker>();
-		//FIXME: finish the implmentation
 		
-		for 
+		
+		for (HandPoker hand: BestMadeHand.values()) {
+		GameHands.add(hand);
+		}
+		Collections.sort(GameHands); //sort by best hands
+		HandPoker bestHand = GameHands.get(0); //gets the best hand out of all made hands
+			
+		
+		
+		Iterator<Map.Entry<UUID, HandPoker>> i = BestMadeHand.entrySet().iterator(); //iterator for best made hand hashset
+		
+		while (i.hasNext()) {
+			Map.Entry<UUID, HandPoker> entry = i.next(); 
+		if (entry.getValue()== bestHand) //checks if the hand matches the best made hand
+		{
+			WinningPlayers.add(GetGamePlayer(entry.getKey())); //adds the winning player to the arraylist
+			
+		}
+		}
+			
+			
+		
+		
 		
 		
 		
