@@ -115,8 +115,6 @@ public class GamePlay {
 		//FIXME: this should not return null, it should return back the best made hand in the hashmap
 		
 		return BestMadeHand.get(player.getPlayerID());
-		
-	
 	}
 
 	/**
@@ -132,9 +130,7 @@ public class GamePlay {
 	public ArrayList<HandPoker> getBestPossibleHands(Player player) {
 		//FIXME: this should not return null, it should return an array of the best possible hands
 		
-		
-		
-		return null;
+		return BestPossibleHands.get(player.getPlayerID());
 	}
 
 	/**
@@ -218,12 +214,14 @@ public class GamePlay {
 		
 		//done
 		
-		if(this.getBestPossibleHands(player).get(0).getHS().equals(getBestPossibleHands(player).get(0).getHS()))
+		if (this.getBestPossibleHands(player).get(0).getHS().equals(getBestPossibleHands(player).get(0).getHS()))
 		{
 			return true;
 		}
-		
-		return false;
+		else
+		{
+			return false;
+		}
 	}
 
 	/**
@@ -236,11 +234,10 @@ public class GamePlay {
 	 * @param HandPoker
 	 */
 	protected void SetBestMadeHand(UUID PlayerID, HandPoker HandPoker) {
-		//FIXME: Put the best made hand for a plyer in the map.
+		//FIXME: Put the best made hand for a player in the map.
+		
 		HandPoker = getBestMadeHand(GetGamePlayer(PlayerID));
 		this.BestMadeHand.put(PlayerID, HandPoker);
-		
-		
 	}
 
 	/**
@@ -254,10 +251,7 @@ public class GamePlay {
 	 */
 	protected void SetBestPossibleHands(UUID PlayerID, ArrayList<HandPoker> BestHands) {
 		
-		
 		this.BestPossibleHands.put(PlayerID, BestHands);
-		
-		
 	}
 	
 	/**
@@ -297,7 +291,7 @@ public class GamePlay {
 		ArrayList<HandPoker> GameHands = new ArrayList<HandPoker>();
 		//FIXME: finish the implmentation
 		
-		for 
+		
 		
 		
 		
