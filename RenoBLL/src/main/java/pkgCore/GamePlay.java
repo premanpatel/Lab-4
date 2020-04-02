@@ -112,7 +112,7 @@ public class GamePlay {
 	 * @return
 	 */
 	public HandPoker getBestMadeHand(Player player) {
-		//FIXME: this should not return null, it should return back the best made hand in the hashmap
+		
 		
 		return BestMadeHand.get(player.getPlayerID());
 	}
@@ -311,12 +311,7 @@ public class GamePlay {
 		}
 		}
 			
-			
-		
-		
-
-		
-		
+	
 		
 		
 		return WinningPlayers;
