@@ -236,7 +236,6 @@ public class GamePlay {
 	protected void SetBestMadeHand(UUID PlayerID, HandPoker HandPoker) {
 		//FIXME: Put the best made hand for a player in the map.
 		
-		HandPoker = getBestMadeHand(GetGamePlayer(PlayerID));
 		this.BestMadeHand.put(PlayerID, HandPoker);
 	}
 

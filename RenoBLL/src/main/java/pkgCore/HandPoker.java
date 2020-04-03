@@ -126,22 +126,24 @@ public class HandPoker extends Hand implements Comparable {
 		HandPoker BestMadeHand = PossibleHands.stream()
 				.filter(x -> x.getHandScorePoker().isNatural() == true).findAny()
 				.orElse(null);
-		ArrayList<HandPoker> BestPossibleHands = (ArrayList<HandPoker>) PossibleHands.stream()
+		HandPoker BestPossibleHands = PossibleHands.stream()
 				.filter(x -> x.getHandScorePoker().isNatural() == false).findAny()
 				.orElse(null);
 		
-		this.getGP().SetBestPossibleHands(this.getPlayer().getPlayerID(),BestPossibleHands);
+		this.getGP().SetBestPossibleHands(this.getPlayer().getPlayerID(),(BestPossibleHands);
 		
 		//TODO: the end result of this method was to run these two setters:
 		ArrayList<HandPoker> BestHand = new ArrayList<HandPoker>();
 		
 		
-		if (BestPossibleHands == null) {
+		if (BestPossibleHands == null) 
+		{
 			BestPossibleHands = BestMadeHand;
 		}
-		else {
+		else 
+		{
 			HandScorePoker BPH = BestPossibleHands.getHandScorePoker();
-			BestHand.addAll((ArrayList<HandPoker>) PossibleHands.stream().filter(x -> x.getHandScorePoker().equals(BPH))).collect(Collectors.toList());
+			BestHand.add(PossibleHands.stream().filter(x -> x.getHandScorePoker().equals(BPH))).collect(Collectors.toList());
 		}
 		
 		
