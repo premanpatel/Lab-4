@@ -119,38 +119,36 @@ public class HandPoker extends Hand implements Comparable {
 	 */
 	
 	public void SetBestHand(ArrayList<HandPoker> PossibleHands) {
-	
-		//FIXME: Set the best possible hands and the best made hand.
-		//FIXME: I'll give you one... BestMadeHand... checkout the linq command
+		
 		
 		HandPoker BestMadeHand = PossibleHands.stream()
 				.filter(x -> x.getHandScorePoker().isNatural() == true).findAny()
 				.orElse(null);
-		HandPoker BestPossibleHands = PossibleHands.stream()
+		
+		HandPoker BestPossibleHand = PossibleHands.stream()
 				.filter(x -> x.getHandScorePoker().isNatural() == false).findAny()
 				.orElse(null);
+
 		
-		this.getGP().SetBestPossibleHands(this.getPlayer().getPlayerID(),(BestPossibleHands);
+		ArrayList<HandPoker> BestPossibleHands = new ArrayList<HandPoker>();
 		
-		//TODO: the end result of this method was to run these two setters:
-		ArrayList<HandPoker> BestHand = new ArrayList<HandPoker>();
-		
-		
-		if (BestPossibleHands == null) 
+		if (BestPossibleHand == null) 
 		{
-			BestPossibleHands = BestMadeHand;
+			BestPossibleHand = BestMadeHand;
 		}
-		else 
+		else if (BestPossibleHand != null)
 		{
-			HandScorePoker BPH = BestPossibleHands.getHandScorePoker();
-			BestHand.add(PossibleHands.stream().filter(x -> x.getHandScorePoker().equals(BPH))).collect(Collectors.toList());
+			HandScorePoker BPH = BestPossibleHand.getHandScorePoker();
+			BestPossibleHands.addAll((ArrayList<HandPoker>) PossibleHands.parallelStream().
+					filter(x -> x.getHandScorePoker().equals(BPH)).collect(Collectors.toList()));
 		}
 		
-		
-		
+		this.getGP().SetBestPossibleHands(this.getPlayer().getPlayerID(),BestPossibleHands);
 		this.getGP().SetBestMadeHand(this.getPlayer().getPlayerID(),BestMadeHand);
 	}
 
+	
+	
 	public ArrayList<HandPoker> GetPossibleHands() throws HandException {
 
 		ArrayList<HandPoker> CombinationHands = new ArrayList<HandPoker>();

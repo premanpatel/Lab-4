@@ -113,7 +113,6 @@ public class GamePlay {
 	 */
 	public HandPoker getBestMadeHand(Player player) {
 		
-		
 		return BestMadeHand.get(player.getPlayerID());
 	}
 
@@ -234,7 +233,6 @@ public class GamePlay {
 	 * @param HandPoker
 	 */
 	protected void SetBestMadeHand(UUID PlayerID, HandPoker HandPoker) {
-		//FIXME: Put the best made hand for a player in the map.
 		
 		this.BestMadeHand.put(PlayerID, HandPoker);
 	}
@@ -309,9 +307,6 @@ public class GamePlay {
 			
 		}
 		}
-			
-	
-		
 		
 		return WinningPlayers;
 	}
