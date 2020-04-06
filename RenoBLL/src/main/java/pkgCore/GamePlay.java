@@ -127,7 +127,6 @@ public class GamePlay {
 	 * @return
 	 */
 	public ArrayList<HandPoker> getBestPossibleHands(Player player) {
-		//FIXME: this should not return null, it should return an array of the best possible hands
 		
 		return BestPossibleHands.get(player.getPlayerID());
 	}
@@ -209,11 +208,8 @@ public class GamePlay {
 	 * @return
 	 */
 	public boolean isMadeHandBestPossibleHand(Player player) {
-		//FIXME: If the BestMadeHand is in the BestPossibleHands, return true.  The player has the NUTS!
 		
-		//done
-		
-		if (this.getBestPossibleHands(player).get(0).getHS().equals(getBestPossibleHands(player).get(0).getHS()))
+		if (getBestMadeHand(player) == (getBestPossibleHands(player).get(0)))
 		{
 			return true;
 		}
@@ -290,7 +286,7 @@ public class GamePlay {
 		
 
 		for (HandPoker hand: BestMadeHand.values()) {
-		GameHands.add(hand);
+			GameHands.add(hand);
 		}
 		Collections.sort(GameHands); //sort by best hands
 		HandPoker bestHand = GameHands.get(0); //gets the best hand out of all made hands
@@ -301,11 +297,11 @@ public class GamePlay {
 		
 		while (i.hasNext()) {
 			Map.Entry<UUID, HandPoker> entry = i.next(); 
-		if (entry.getValue()== bestHand) //checks if the hand matches the best made hand
-		{
-			WinningPlayers.add(GetGamePlayer(entry.getKey())); //adds the winning player to the arraylist
+			if (entry.getValue() == bestHand) //checks if the hand matches the best made hand
+			{
+				WinningPlayers.add(GetGamePlayer(entry.getKey())); //adds the winning player to the arraylist
 			
-		}
+			}
 		}
 		
 		return WinningPlayers;
