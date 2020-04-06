@@ -28,35 +28,53 @@ public class GamePlayTest {
 
 	@Test
 	public void GamePlay_Test1() {
-		Table t = new Table("Table 1");
-		t.AddPlayerToTable(new Player("Bert"));
-		t.AddPlayerToTable(new Player("Joe"));
-		t.AddPlayerToTable(new Player("Jim"));
-		t.AddPlayerToTable(new Player("Jane"));
-
-		Rule rle = new Rule(eGame.TexasHoldEm);
-		GamePlay gp = new GamePlay(t, rle);
 		
-		ArrayList<Card> cards = new ArrayList<Card>();
-		cards.add(new Card(eSuit.HEARTS, eRank.TWO));
-		cards.add(new Card(eSuit.HEARTS, eRank.THREE));
+		Table t = new Table("Table 1");
 		
 		Player p1 = new Player("Bert");
 		Player p2 = new Player("Joe");
 		
+		t.AddPlayerToTable(p1);
+		t.AddPlayerToTable(p2);
+
+		Rule rle = new Rule(eGame.TexasHoldEm);
+		GamePlay gp = new GamePlay(t, rle);
+		
+		
+		try {
+			gp.StartGame();
+		} catch (DeckException e1) {
+			
+			e1.printStackTrace();
+		} catch (HandException e1) {
+			
+			e1.printStackTrace();
+		}
+		
+		
+		HandPoker hp1 = gp.GetPlayersHand(p1);		
+		HandPoker hp2 = gp.GetPlayersHand(p2);
+		
+		
+		ArrayList<Card> p1Cards = new ArrayList<Card>();
+		p1Cards.add(new Card(eSuit.HEARTS, eRank.ACE));
+		p1Cards.add(new Card(eSuit.HEARTS, eRank.ACE));
+		
 		ArrayList<Card> p2Cards = new ArrayList<Card>();
-		cards.add(new Card(eSuit.HEARTS, eRank.ACE));
-		cards.add(new Card(eSuit.DIAMONDS, eRank.ACE));
+		p2Cards.add(new Card(eSuit.CLUBS, eRank.ACE));
+		p2Cards.add(new Card(eSuit.CLUBS, eRank.ACE));
 		
 		ArrayList<Card> commonCards = new ArrayList<Card>();
 		commonCards.add(new Card(eSuit.HEARTS, eRank.THREE));
 		commonCards.add(new Card(eSuit.HEARTS, eRank.FOUR));
 		commonCards.add(new Card(eSuit.HEARTS, eRank.FIVE));
+		commonCards.add(new Card(eSuit.CLUBS, eRank.TEN));	
+		commonCards.add(new Card(eSuit.CLUBS, eRank.QUEEN));
 		
 		gp = GamePlayHelper.setCommonCards(gp,  commonCards);
 		
-		HandPoker hp1 = HandPokerHelper.SetHand(cards, new HandPoker());
-		HandPoker hp2 = HandPokerHelper.SetHand(p2Cards, new HandPoker());
+		hp1 = HandPokerHelper.SetHand(p1Cards, hp1);
+		hp2 = HandPokerHelper.SetHand(p2Cards, hp2);
 		
 		gp = GamePlayHelper.PutGamePlay(gp, p1.getPlayerID(), hp1);		
 		gp = GamePlayHelper.PutGamePlay(gp, p2.getPlayerID(), hp2);
@@ -69,7 +87,90 @@ public class GamePlayTest {
 		} catch (HandException e) {
 			fail("Evaluate hands failed");
 		}
+
+		ArrayList<Player> pWinner = gp.GetGameWinners();
+
+		
+		assertTrue(pWinner.contains(p1));
+		
+		
+		
+
+	
+	
+	
+	
+	
+	@Test
+	public void GamePlay_Test2() {
+		
+		Table t = new Table("Table 1");
+		
+		Player p1 = new Player("Bert");
+		Player p2 = new Player("Joe");
+		
+		t.AddPlayerToTable(p1);
+		t.AddPlayerToTable(p2);
+
+		Rule rle = new Rule(eGame.TexasHoldEm);
+		GamePlay gp = new GamePlay(t, rle);
+		
+		try {
+			gp.StartGame();
+		} catch (DeckException e1) {
+			
+			e1.printStackTrace();
+		} catch (HandException e1) {
+			
+			e1.printStackTrace();
+		}
+		
+		
+		HandPoker hp1 = gp.GetPlayersHand(p1);		
+		HandPoker hp2 = gp.GetPlayersHand(p2);
+		
+		
+		ArrayList<Card> p1Cards = new ArrayList<Card>();
+		p1Cards.add(new Card(eSuit.DIAMONDS, eRank.ACE));
+		p1Cards.add(new Card(eSuit.DIAMONDS, eRank.TWO));
+		
+		ArrayList<Card> p2Cards = new ArrayList<Card>();
+		p2Cards.add(new Card(eSuit.CLUBS, eRank.ACE));
+		p2Cards.add(new Card(eSuit.CLUBS, eRank.TWO));
+		
+		ArrayList<Card> commonCards = new ArrayList<Card>();
+		commonCards.add(new Card(eSuit.HEARTS, eRank.THREE));
+		commonCards.add(new Card(eSuit.HEARTS, eRank.FOUR));
+		commonCards.add(new Card(eSuit.HEARTS, eRank.FIVE));
+		commonCards.add(new Card(eSuit.CLUBS, eRank.TEN));	
+		commonCards.add(new Card(eSuit.CLUBS, eRank.QUEEN));	
+		
+		gp = GamePlayHelper.setCommonCards(gp,  commonCards);
+	
+		hp1 = HandPokerHelper.SetHand(p1Cards, hp1);
+		hp2 = HandPokerHelper.SetHand(p2Cards, hp2);
+		
+		gp = GamePlayHelper.PutGamePlay(gp, p1.getPlayerID(), hp1);		
+		gp = GamePlayHelper.PutGamePlay(gp, p2.getPlayerID(), hp2);
+		
+		
+		try {
+			gp.EvaluateGameHands();
+		} catch (HandException e) {
+			fail("Evaluate hands failed");
+		}
+
+		ArrayList<Player> pWinner = null;
+		pWinner = gp.GetGameWinners();
+		
+		
+		assertTrue(pWinner.contains(p1));
+		assertTrue(pWinner.contains(p2));
+		
 	}
+	
+	
+	
 
 
 	
