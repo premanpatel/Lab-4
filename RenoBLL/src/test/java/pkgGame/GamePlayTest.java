@@ -93,6 +93,8 @@ public class GamePlayTest {
 		
 		assertTrue(pWinner.contains(p1));
 		
+	}
+		
 		
 		
 
