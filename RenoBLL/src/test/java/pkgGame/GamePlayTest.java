@@ -61,12 +61,17 @@ public class GamePlayTest {
 		gp = GamePlayHelper.PutGamePlay(gp, p1.getPlayerID(), hp1);		
 		gp = GamePlayHelper.PutGamePlay(gp, p2.getPlayerID(), hp2);
 		
+		
+		
+		
 		try {
 			gp.EvaluateGameHands();
 		} catch (HandException e) {
 			fail("Evaluate hands failed");
 		}
-
 	}
 
+
+	
 }
+
